@@ -126,4 +126,38 @@
     })
   });
 
+  // JavaScript untuk menampilkan dan menyembunyikan modal
+  const openModalButtons = document.querySelectorAll('.open-modal-button');
+  const closeButtons = document.querySelectorAll('.closeModal');
+
+  openModalButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const modalId = button.getAttribute('data-modal');
+          const modal = document.getElementById(modalId);
+          modal.style.display = 'block';
+      });
+  });
+
+  closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          const modal = button.closest('.modal');
+          modal.style.display = 'none';
+      });
+  });
+
+
+  $('[data-toggle="tooltip"]').tooltip()
+
+	// $('#exampleModalCenter').modal('show')
+
+	var fullHeight = function() {
+
+		$('.js-fullheight').css('height', $(window).height());
+		$(window).resize(function(){
+			$('.js-fullheight').css('height', $(window).height());
+		});
+
+	};
+	fullHeight()
+
 })()
