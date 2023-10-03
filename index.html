@@ -49,12 +49,13 @@
       </h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="d-flex">
         <ul>
           <li><a class="active" href="index.html">Home</a></li>
           <li><a href="#Pelayanan">Pelayanan Publik</a></li>
           <li><a href="#Contant">Kontak Kami</a></li>
         </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
     </div>
   </header><!-- End Header -->
 
@@ -111,337 +112,410 @@
       </section>
       <!-- End Counts Section -->
       <!-- Modal SKU -->
-      <div class="modal fade" id="ModelSKU" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
+<div class="modal fade" id="ModelSKU" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
               <h2>Formulir SKU</h2>
               <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
               </button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-              <p class="statusMsg"></p>
-              <form role="form">
-                <div>
-                  <h4>Data Pemilik Usaha</h4>
-                </div>
-                <div class="form-group">
-                  <label for="inputNama">Nama</label>
-                  <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputTtl">Tempat/Tanggal Lahir</label>
-                  <input type="text" class="form-control" id="inputTtl" placeholder="Masukan tempat tanggal lahir" />
-                </div>
-                <div class="form-group">
-                  <label for="inputJeniskelamin">Jenis Kelamin</label>
-                  <input type="text" class="form-control" id="inputJeniskelamin" placeholder="Masukan jenis kelamin" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAlamat">Alamat</label>
-                  <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAgama">Agama</label>
-                  <input type="text" class="form-control" id="inputAgama" placeholder="Masukan agama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputStatusperkawinan">Status Perkawinan</label>
-                  <input type="text" class="form-control" id="inputStatusperkawinan" placeholder="Masukan status perkawinan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPekerjaan">Pekerjaan</label>
-                  <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputKewarganegaraan">Kewarganegaraan</label>
-                  <input type="text" class="form-control" id="inputKewarganegaraan" placeholder="Masukan kewarganegaraan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNik">NIK</label>
-                  <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
-                </div>
-                <div>
-                  <br>
-                  <h4>Data Usaha</h4>
-                </div>
-                <div class="form-group">
-                  <label for="inputTahunusaha">Tahun Awal Usaha</label>
-                  <input type="text" class="form-control" id="inputTahunusaha" placeholder="Masukan tahun awal usaha" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNamausaha">Nama Usaha</label>
-                  <input type="text" class="form-control" id="inputNamausaha" placeholder="Masukan nama usaha" />
-                </div>
-                <div class="form-group">
-                  <label for="inputJenisusaha">Jenis Usaha</label>
-                  <input type="text" class="form-control" id="inputJenisusaha" placeholder="Masukan jenis usaha" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNib">Nomor Induk Berusaha</label>
-                  <input type="text" class="form-control" id="inputNib" placeholder="Masukan Nomor Induk Berusaha" />
-                </div>
-                <div class="form-group">
-                  <label for="inputLokasi">Lokasi Usaha</label>
-                  <input type="text" class="form-control" id="inputLokasi" placeholder="Masukan lokasi usaha" />
-                </div>
-              </form>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">SUBMIT</button>
-            </div>
           </div>
-        </div>
+
+          <!-- Modal Body -->
+          <form action="{{ route('sku.create') }}" method="POST">
+              <div class="modal-body">
+                  <p class="statusMsg"></p>
+                  <div>
+                      <h4>Data Pemilik Usaha</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNama">Nama</label>
+                      <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Masukan nama"
+                          required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputTtl">Tempat/Tanggal Lahir</label>
+                      <input type="text" class="form-control" name="ttl" id="inputTtl"
+                          placeholder="cth: Karawang, 01 Januari 2002" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputJeniskelamin">Jenis Kelamin</label>
+                      <select class="form-select" name="jenis_kelamin" aria-label="Default select example">
+                          <option value="Laki-laki">Laki-laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAlamat">Alamat</label>
+                      <input type="text" class="form-control" name="alamat" id="inputAlamat"
+                          placeholder="Masukan alamat" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAgama">Agama</label>
+                      <select class="form-select" name="agama">
+                          <option value="Islam">Islam</option>
+                          <option value="Kristen">Kristen</option>
+                          <option value="Katholik">Katholik</option>
+                          <option value="Hindu">Hindu</option>
+                          <option value="Buddha">Buddha</option>
+                          <option value="Konghucu">Konghucu</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputStatusperkawinan">Status Perkawinan</label>
+                      <select class="form-select" name="status_perkawinan">
+                          <option value="Belum Menikah">Belum Menikah</option>
+                          <option value="Menikah">Menikah</option>
+                          <option value="Cerai">Cerai</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPekerjaan">Pekerjaan</label>
+                      <input type="text" class="form-control" name="pekerjaan" id="inputPekerjaan"
+                          placeholder="Cth: Wiraswasta" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputKewarganegaraan">Kewarganegaraan</label>
+                      <select class="form-select" name="kewarganegaraan">
+                          <option value="WNI">WNI</option>
+                          <option value="WNA">WNA</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNik">NIK</label>
+                      <input type="text" class="form-control numeric-input" name="nik" id="inputNik"
+                          placeholder="Masukan NIK" required />
+                  </div>
+                  <div>
+                      <br>
+                      <h4>Data Usaha</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputTahunUsaha">Tahun Awal Usaha</label>
+                      <input type="text" class="form-control numeric-input" name="tahun_usaha" id="inputTahunUsaha"
+                          placeholder="Masukan tahun awal usaha" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNamausaha">Nama Usaha</label>
+                      <input type="text" class="form-control" name="nama_usaha" id="inputNamausaha"
+                          placeholder="Masukan nama usaha" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputJenisusaha">Jenis Usaha</label>
+                      <input type="text" class="form-control" name="jenis_usaha" id="inputJenisusaha"
+                          placeholder="Masukan jenis usaha" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputLokasi">Lokasi Usaha</label>
+                      <input type="text" class="form-control" name="lokasi_usaha" id="inputLokasi"
+                          placeholder="Masukan lokasi usaha" required />
+                  </div>
+              </div>
+
+              <!-- Modal Footer -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary submitBtn">SUBMIT</button>
+              </div>
+          </form>
       </div>
-      <!-- End Modal -->
-      <!-- Modal SKM -->
-      <div class="modal fade" id="ModelSKM" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h2>Formulir SKM</h2>
+  </div>
+</div>
+<!-- End Modal SKU -->
+
+<!-- Modal SKK -->
+<div class="modal fade" id="ModelSKK" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h2>Formulir SKK</h2>
               <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
               </button>
-            </div>
+          </div>
 
-            <!-- Modal Body -->
-            <div class="modal-body">
+          <!-- Modal Body -->
+          <div class="modal-body">
               <p class="statusMsg"></p>
               <form role="form">
-                <div>
-                  <h4>Yang bertanda tangan dibawah ini, menerangkan bahwa</h4>
-                </div>
-                <div class="form-group">
-                  <label for="inputNama">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNik">NIK</label>
-                  <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
-                </div>
-                <div class="form-group">
-                  <label for="inputUmur">Umur</label>
-                  <input type="text" class="form-control" id="inputUmur" placeholder="Masukan umur" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPekerjaan">Pekerjaan</label>
-                  <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAlamat">Alamat KTP</label>
-                  <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
-                </div>
-                <div>
-                  <br>
-                  <h4>Telah meninggal dunia pada</h4>
-                </div>
-                <div class="form-group">
-                  <label for="inputHari">Hari</label>
-                  <input type="text" class="form-control" id="inputHari" placeholder="Masukan hari" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPukul">Pukul</label>
-                  <input type="text" class="form-control" id="inputPukul" placeholder="Masukan pukul" />
-                </div>
-                <div class="form-group">
-                  <label for="inputTempatkematian">Tempat Kematian</label>
-                  <input type="text" class="form-control" id="inputTempatkematian" placeholder="Masukan tempat kematian" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPenyebabkematian">Penyebab Kematian</label>
-                  <input type="text" class="form-control" id="inputPenyebabkematian" placeholder="Masukan penyebab kematian" />
-                </div>
-                <div>
-                  <br>
-                  <h4>Surat keterangan ini dibuat berdasarkan Keterangan pelapor</h4>
-                </div>
-                <div class="form-group">
-                  <label for="inputNama">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNik">NIK</label>
-                  <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
-                </div>
-                <div class="form-group">
-                  <label for="inputUmur">Umur</label>
-                  <input type="text" class="form-control" id="inputUmur" placeholder="Masukan umur" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPekerjaan">Pekerjaan</label>
-                  <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAlamat">Alamat KTP</label>
-                  <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
-                </div>
-                <div class="form-group">
-                  <label for="inputHubungan">Hubungan Pelapor Dengan Yang Meninggal Dunia</label>
-                  <input type="text" class="form-control" id="inputHubungan" placeholder="Masukan hubungan pelapor dengan yang meninggal dunia" />
-                </div>
-              </form>
-            </div>
+                  <div>
+                      <h4>Yang bertanda tangan dibawah ini, menerangkan bahwa</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNama">Nama Lengkap</label>
+                      <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNik">NIK</label>
+                      <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputUmur">Umur</label>
+                      <input type="text" class="form-control" id="inputUmur" placeholder="Masukan umur" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPekerjaan">Pekerjaan</label>
+                      <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAlamat">Alamat KTP</label>
+                      <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
+                  </div>
+                  <div>
+                      <br>
+                      <h4>Telah meninggal dunia pada</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputHari">Hari</label>
+                      <select class="form-select" name="hari" aria-label="Default select example">
+                          <option value="Senin">Senin</option>
+                          <option value="Selasa">Selasa</option>
+                          <option value="Rabu">Rabu</option>
+                          <option value="Kamis">Kamis</option>
+                          <option value="Jumat">Jumat</option>
+                          <option value="Sabtu">Sabtu</option>
+                          <option value="Minggu">Minggu</option>
+                      </select>
 
-            <!-- Modal Footer -->
-            <div class="modal-footer">
+                  </div>
+                  <div class="form-group">
+                      <label for="inputTanggal">Tanggal</label>
+                      <input type="text" class="form-control" id="inputTanggal" placeholder="Masukan tanggal" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPukul">Pukul</label>
+                      <input type="text" class="form-control" id="inputPukul" placeholder="Masukan pukul" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputTempatkematian">Tempat Kematian</label>
+                      <input type="text" class="form-control" id="inputTempatkematian"
+                          placeholder="Masukan tempat kematian" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPenyebabkematian">Penyebab Kematian</label>
+                      <input type="text" class="form-control" id="inputPenyebabkematian"
+                          placeholder="Masukan penyebab kematian" />
+                  </div>
+                  <div>
+                      <br>
+                      <h4>Surat keterangan ini dibuat berdasarkan Keterangan pelapor</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNama">Nama Lengkap</label>
+                      <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNik">NIK</label>
+                      <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputUmur">Umur</label>
+                      <input type="text" class="form-control" id="inputUmur" placeholder="Masukan umur" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPekerjaan">Pekerjaan</label>
+                      <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAlamat">Alamat</label>
+                      <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputHubungan">Hubungan Pelapor Dengan Yang Meninggal Dunia</label>
+                      <input type="text" class="form-control" id="inputHubungan"
+                          placeholder="Masukan hubungan pelapor dengan yang meninggal dunia" />
+                  </div>
+              </form>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">SUBMIT</button>
-            </div>
           </div>
-        </div>
       </div>
-      <!-- End Modal -->
-      <!-- Modal SK Domisili-->
-      <div class="modal fade" id="ModelSKdomisili" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
+  </div>
+</div>
+<!-- End Modal SKK -->
+
+<!-- Modal SKDBM -->
+<div class="modal fade" id="ModelSKDBM" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h2>Formulir SKDBM</h2>
+              <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+              </button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body">
+              <p class="statusMsg"></p>
+              <form role="form">
+                  <div>
+                      <h4>Yang bertanda tangan dibawah ini, menerangkan bahwa:</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNama">Nama</label>
+                      <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Masukan nama"
+                          required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputTtl">Tempat/Tanggal Lahir</label>
+                      <input type="text" class="form-control" name="ttl" id="inputTtl"
+                          placeholder="cth: Karawang, 01 Januari 2002" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputJeniskelamin">Jenis Kelamin</label>
+                      <select class="form-select" name="jenis_kelamin" aria-label="Default select example">
+                          <option value="Laki-laki">Laki-laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAlamat">Alamat</label>
+                      <input type="text" class="form-control" name="alamat" id="inputAlamat"
+                          placeholder="Masukan alamat" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAgama">Agama</label>
+                      <input type="text" class="form-control" name="agama" id="inputAgama" placeholder="Masukan agama"
+                          required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputStatusperkawinan">Status Perkawinan</label>
+                      <select class="form-select" name="status_perkawinan" aria-label="Default select example">
+                          <option value="Belum Menikah">Belum Menikah</option>
+                          <option value="Menikah">Menikah</option>
+                          <option value="Cerai">Cerai</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPekerjaan">Pekerjaan</label>
+                      <input type="text" class="form-control" name="pekerjaan" id="inputPekerjaan"
+                          placeholder="Masukan pekerjaan" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputKewarganegaraan">Kewarganegaraan</label>
+                      <input type="text" class="form-control" name="kewarganegaraan" id="inputKewarganegaraan"
+                          placeholder="Masukan kewarganegaraan" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNik">NIK</label>
+                      <input type="text" class="form-control numeric-input" name="nik" id="inputNik"
+                          placeholder="Masukan NIK" required />
+                  </div>
+              </form>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">SUBMIT</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- End Modal SKTM -->
+
+<!-- Modal SK Domisili-->
+<div class="modal fade" id="ModelSKdomisili" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
               <h2>Formulir SK Domisili</h2>
               <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
               </button>
-            </div>
+          </div>
 
-            <!-- Modal Body -->
-            <div class="modal-body">
+          <!-- Modal Body -->
+          <div class="modal-body">
               <p class="statusMsg"></p>
               <form role="form">
-                <div class="form-group">
-                  <label for="inputNama">Nama</label>
-                  <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputTtl">Tempat/Tanggal Lahir</label>
-                  <input type="text" class="form-control" id="inputTtl" placeholder="Masukan tempat tanggal lahir" />
-                </div>
-                <div class="form-group">
-                  <label for="inputJeniskelamin">Jenis Kelamin</label>
-                  <input type="text" class="form-control" id="inputJeniskelamin" placeholder="Masukan jenis kelamin" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAlamat">Alamat</label>
-                  <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAgama">Agama</label>
-                  <input type="text" class="form-control" id="inputAgama" placeholder="Masukan agama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputStatusperkawinan">Status Perkawinan</label>
-                  <input type="text" class="form-control" id="inputStatusperkawinan" placeholder="Masukan status perkawinan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPekerjaan">Pekerjaan</label>
-                  <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputKewarganegaraan">Kewarganegaraan</label>
-                  <input type="text" class="form-control" id="inputKewarganegaraan" placeholder="Masukan kewarganegaraan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNik">NIK</label>
-                  <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label" for="penduduk">Penduduk</label>
-                  <select class="form-select" id="penduduk" aria-label="Penduduk">
-                      <option value="Select">Select</option>
-                      <option value="Penduduk Lama">Penduduk Lama</option>
-                      <option value="Pendatang">Pendatang</option>
-                  </select>
-                </div>
+                  <div>
+                      <h4>Yang bertanda tangan dibawah ini, menerangkan bahwa:</h4>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNama">Nama</label>
+                      <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Masukan nama"
+                          required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputTtl">Tempat/Tanggal Lahir</label>
+                      <input type="text" class="form-control" name="ttl" id="inputTtl"
+                          placeholder="cth: Karawang, 01 Januari 2002" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputJeniskelamin">Jenis Kelamin</label>
+                      <select class="form-select" name="jenis_kelamin" aria-label="Default select example">
+                          <option value="Laki-laki">Laki-laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAlamat">Alamat</label>
+                      <input type="text" class="form-control" name="alamat" id="inputAlamat"
+                          placeholder="Masukan alamat" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAgama">Agama</label>
+                      <input type="text" class="form-control" name="agama" id="inputAgama" placeholder="Masukan agama"
+                          required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputStatusperkawinan">Status Perkawinan</label>
+                      <select class="form-select" name="status_perkawinan" aria-label="Default select example">
+                          <option value="Belum Menikah">Belum Menikah</option>
+                          <option value="Menikah">Menikah</option>
+                          <option value="Cerai">Cerai</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="inputPekerjaan">Pekerjaan</label>
+                      <input type="text" class="form-control" name="pekerjaan" id="inputPekerjaan"
+                          placeholder="Masukan pekerjaan" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputKewarganegaraan">Kewarganegaraan</label>
+                      <input type="text" class="form-control" name="kewarganegaraan" id="inputKewarganegaraan"
+                          placeholder="Masukan kewarganegaraan" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputNik">NIK</label>
+                      <input type="text" class="form-control numeric-input" name="nik" id="inputNik"
+                          placeholder="Masukan NIK" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="inputStatusperkawinan">Status Kependudukan</label>
+                      <select class="form-select" name="status_kependudukan" aria-label="Default select example">
+                          <option value="Penduduk Lama">Penduduk Lama</option>
+                          <option value="Pendatang">Pendatang</option>
+                      </select>
+                  </div>
               </form>
-            </div>
+          </div>
 
-            <!-- Modal Footer -->
-            <div class="modal-footer">
+          <!-- Modal Footer -->
+          <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">SUBMIT</button>
-            </div>
           </div>
-        </div>
       </div>
-      <!-- End Modal -->
-     
-       <!-- Modal SK Belum Menikah-->
-       <div class="modal fade" id="ModelSKbelummenikah" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h2>Formulir SK Belum Menikah</h2>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-              </button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-              <p class="statusMsg"></p>
-              <form role="form">
-                <div class="form-group">
-                  <label for="inputNama">Nama</label>
-                  <input type="text" class="form-control" id="inputNama" placeholder="Masukan nama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputTtl">Tempat/Tanggal Lahir</label>
-                  <input type="text" class="form-control" id="inputTtl" placeholder="Masukan tempat tanggal lahir" />
-                </div>
-                <div class="form-group">
-                  <label for="inputJeniskelamin">Jenis Kelamin</label>
-                  <input type="text" class="form-control" id="inputJeniskelamin" placeholder="Masukan jenis kelamin" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAlamat">Alamat</label>
-                  <input type="text" class="form-control" id="inputAlamat" placeholder="Masukan alamat" />
-                </div>
-                <div class="form-group">
-                  <label for="inputAgama">Agama</label>
-                  <input type="text" class="form-control" id="inputAgama" placeholder="Masukan agama" />
-                </div>
-                <div class="form-group">
-                  <label for="inputStatusperkawinan">Status Perkawinan</label>
-                  <input type="text" class="form-control" id="inputStatusperkawinan" placeholder="Masukan status perkawinan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputPekerjaan">Pekerjaan</label>
-                  <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan pekerjaan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputKewarganegaraan">Kewarganegaraan</label>
-                  <input type="text" class="form-control" id="inputKewarganegaraan" placeholder="Masukan kewarganegaraan" />
-                </div>
-                <div class="form-group">
-                  <label for="inputNik">NIK</label>
-                  <input type="text" class="form-control" id="inputNik" placeholder="Masukan NIK" />
-                </div>
-              </form>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">SUBMIT</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Modal -->
-      <!-- ======= Popular Courses Section ======= -->
+  </div>
+</div>
+<!-- End Modal SK Domisili -->      
+<!-- ======= Popular Courses Section ======= -->
       <section id="Pelayanan" class="courses">
         <div class="container" data-aos="fade-up">
           <div class="section-title">
@@ -463,9 +537,9 @@
 
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-toggle="modal" data-target="#ModelSKM">
               <div class="course-item">
-                <img src="assets/img/skm.png" class="img-fluid" alt="..." />
+                <img src="assets/img/skm.jpg" class="img-fluid" alt="..." />
                 <div class="course-content">
-                  <h3><a data-toggle="modal" data-target="#ModelSKM">SKM (Surat Keterangan Kematian)</a></h3>
+                  <h3><a data-toggle="modal" data-target="#ModelSKK">SKK (Surat Keterangan Kematian)</a></h3>
                   <p>Surat keterangan kematian adalah dokumen resmi yang dikeluarkan oleh desa untuk mengkonfirmasi bahwa seseorang telah meninggal dunia.</p>
                 </div>
               </div>
@@ -474,7 +548,7 @@
 
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-toggle="modal" data-target="#ModelSKdomisili">
               <div class="course-item">
-                <img src="assets/img/skd_domisili.png" class="img-fluid" alt="..." />
+                <img src="assets/img/skd_domisili.jpg" class="img-fluid" alt="..." />
                 <div class="course-content">
                   <h3><a data-toggle="modal" data-target="#ModelSKdomisili">SKD Domisili</a></h3>
                   <p>Surat keterangan domisili adalah dokumen resmi yang dikeluarkan oleh pihak desa yang menunjukkan alamat tempat tinggal seseorang.</p>
@@ -483,11 +557,11 @@
             </div>
              <!-- End Course Item-->
 
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-toggle="modal" data-target="#ModelSKbelummenikah">
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-toggle="modal" data-target="#ModelSKDBM">
               <div class="course-item">
-                <img src="assets/img/skd_blmmenikah.png" class="img-fluid" alt="..." />
+                <img src="assets/img/skd_blmmenikah.jpg" class="img-fluid" alt="..." />
                 <div class="course-content">
-                  <h3><a data-toggle="modal" data-target="#ModelSKbelummenikah">SKD Belum Menikah</a></h3>
+                  <h3><a data-toggle="modal" data-target="#ModelSKDBM">SKD Belum Menikah</a></h3>
                   <p>Surat keterangan belum menikah adalah dokumen yang diterbitkan oleh desa, yang menyatakan bahwa seseorang belum pernah menikah.</p>
                 </div>
               </div>
@@ -505,16 +579,15 @@
       <div class="footer-top">
         <div class="container">
           <div class="row">
-            <div class="col-lg-4 col-md-6 footer-contact">
-              <h2>Cadaskertajaya</h3>
-              <h4>
-                Desa Cadaskertajaya 41381<br />
-                Indonesia <br /><br />
-                <strong>Phone:</strong> +1 5589 55488 55<br />
-                <strong>Email:</strong> info@example.com<br />
-              </h4>
+            <div class="col-lg-6 col-md-6 footer-contact">
+                <h2>Cadaskertajaya</h3>
+                    <h3>
+                        Desa Cadaskertajaya 41381<br />
+                        Indonesia <br /><br />
+                        <strong>Phone:</strong> +62 896-3737-9535<br />
+                        <strong>Email:</strong> desacadaskertajaya10@gmail.com<br />
+                    </h3>
             </div>
-          </div>
         </div>
       </div>
 
@@ -523,6 +596,13 @@
           <div class="copyright">
             &copy; Copyright <strong><span>KKN UNSIKA FASILKOM 2023</span></strong
             >. All Rights Reserved
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
